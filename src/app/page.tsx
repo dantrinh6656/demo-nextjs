@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import RegisterPage from "./register/page";
 
 export default function Home() {
   // State cho login
@@ -14,63 +15,37 @@ export default function Home() {
   };
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      {/* Background logo */}
-      <div className="absolute inset-0 -z-10 opacity-10">
-        <Image
-          src="/wallpaper.png" // đổi thành logo bạn muốn làm background
-          alt="Background Logo"
-          fill
-          className="object-contain object-center"
-        />
-      </div>
+    <main className="relative flex min-h-screen flex-col items-center justify-center px-4">
+      {/* Overlay tint */}
+      <div className="overlay-dark" />
 
       {/* Logo góc trên */}
-      <div className="absolute top-4 left-4">
-        <Image
-          src="/corner.png" // logo nhỏ khác
-          alt="Corner Logo"
-          width={60}
-          height={60}
-        />
+      <div className="absolute top-4 left-4 z-10">
+        <Image src="/corner.png" alt="Corner Logo" width={56} height={56} />
       </div>
 
-      {/* Nội dung chính */}
-      <h1 className="mb-6 text-3xl font-bold text-gray-800">
+      {/* Heading */}
+      <h1 className="z-10 mb-8 text-4xl font-bold font-cyber uppercase neon-title text-center">
         XMT Solutions
       </h1>
 
-      {/* Cart mẫu */}
-      <div className="mb-10 rounded-xl border bg-white p-6 shadow-lg">
-        <h2 className="mb-4 text-xl font-semibold">Dân Trịnh :D</h2>
-        <ul className="space-y-2">
-          <li className="flex justify-between">
-            <span>DânTrịnh </span>
-            <span>100.000.000đ</span>
-          </li>
-          <li className="flex justify-between">
-            <span>DânTrịnh </span>
-            <span>200.000.000đ</span>
-          </li>
-        </ul>
-        <div className="mt-4 flex justify-between font-bold">
-          <span>Tổng</span>
-          <span>300.000.000đ</span>
+      {/* Info panel */}
+      <div className="z-10 mb-8 w-full max-w-3xl rounded-2xl p-6 panel">
+        <div className="mb-3 flex items-center justify-between">
+          <span className="badge-soft px-3 py-1 rounded-md text-xs uppercase tracking-wider">Loading...</span>
+          <span className="text-sm text-white/70">demo</span>
         </div>
+        <p className="text-sm text-white/80">
+          TESTING...
+        </p>
       </div>
 
-      {/* Form Login */}
-      <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
-          Đăng Nhập
-        </h2>
+      {/* Login Card */}
+      <div className="z-10 w-full max-w-md rounded-2xl p-6 glass">
+        <h2 className="mb-6 text-center text-2xl font-bold neon-title">Đăng Nhập</h2>
         <form onSubmit={handleLogin} className="space-y-4">
-          {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-white/80">
               Email
             </label>
             <input
@@ -79,17 +54,12 @@ export default function Home() {
               placeholder="Nhập email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              className="mt-1 w-full rounded-lg bg-black/40 border border-white/15 px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
               required
             />
           </div>
-
-          {/* Password */}
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="password" className="block text-sm font-medium text-white/80">
               Mật khẩu
             </label>
             <input
@@ -98,25 +68,16 @@ export default function Home() {
               placeholder="Nhập mật khẩu..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              className="mt-1 w-full rounded-lg bg-black/40 border border-white/15 px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-400/40"
               required
             />
           </div>
-
-          {/* Button */}
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 transition"
-          >
+          <button type="submit" className="w-full rounded-lg px-4 py-2 text-black font-medium transition btn-neon">
             Đăng nhập
           </button>
         </form>
-
-        <p className="mt-4 text-center text-sm text-gray-600">
-          Chưa có tài khoản?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
-            Đăng ký
-          </a>
+        <p className="mt-4 text-center text-sm text-white/70">
+          Chưa có tài khoản? <a href="/register" className="underline decoration-cyan-400/60 hover:text-white">Đăng ký</a>
         </p>
       </div>
     </main>

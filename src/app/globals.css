@@ -3,6 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Aurora neon theme (teal ↔ pink) */
+  --primary: #06b6d4; /* cyan */
+  --primary-800: #0e7490;
+  --accent: #f472b6; /* pink */
+  --accent-700: #be185d;
+  --panel: rgba(14, 165, 233, 0.06);
+  --panel-border: rgba(6, 182, 212, 0.35);
+  --glass: rgba(255, 255, 255, 0.06);
+  --shadow-neon: 0 0 0 2px rgba(6, 182, 212, 0.2), 0 0 24px rgba(244, 114, 182, 0.28);
 }
 
 @theme inline {
@@ -10,6 +19,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-cyber: var(--font-cyber);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +30,70 @@
 }
 
 body {
-  background: var(--background);
+  /* Fallback color */
+  background-color: var(--background);
+  /* Background image */
+  background-image: url('/wallpaper.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* full-bleed background */
+  background-attachment: fixed;
+
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cyber display font utility */
+.font-cyber {
+  font-family: var(--font-cyber), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Neon theme utilities ===== */
+.neon-title {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 14px rgba(6, 182, 212, 0.25);
+}
+
+.panel {
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(6, 182, 212, 0.07), transparent 60%),
+    radial-gradient(1200px 800px at 110% 120%, rgba(244, 114, 182, 0.08), transparent 60%),
+    var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-neon);
+  backdrop-filter: blur(8px);
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.btn-neon {
+  position: relative;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.btn-neon:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.25), 0 0 24px rgba(244, 114, 182, 0.35);
+}
+
+.badge-soft {
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  color: #a5f3fc;
+}
+
+.overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1000px 600px at 20% 10%, rgba(6, 182, 212, 0.08), transparent 60%),
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
 }
