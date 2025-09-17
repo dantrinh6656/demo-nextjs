@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -22,7 +23,7 @@ export default function RegisterPage() {
       localStorage.setItem("demo_user", JSON.stringify(newUser));
       alert("Đăng ký thành công! Hãy đăng nhập.");
       router.push("/");
-    } catch (err) {
+    } catch {
       alert("Không thể lưu tài khoản trên trình duyệt.");
     }
   };
@@ -101,7 +102,7 @@ export default function RegisterPage() {
         </form>
 
         <p className="mt-4 text-center text-sm text-white/70">
-          Đã có tài khoản? <a href="/" className="underline decoration-cyan-400/60 hover:text-white">Đăng nhập</a>
+          Đã có tài khoản? <Link href="/" className="underline decoration-cyan-400/60 hover:text-white">Đăng nhập</Link>
         </p>
       </div>
     </main>

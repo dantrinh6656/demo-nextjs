@@ -8,7 +8,6 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [infoMessage, setInfoMessage] = useState("TESTING...");
-  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     // Nếu đã có thông tin đăng nhập lưu trước đó thì hiển thị luôn
@@ -32,14 +31,12 @@ export default function Home() {
       }
       const user = JSON.parse(raw) as { email: string; password: string };
       if (user.email === email && user.password === password) {
-        setLoggedIn(true);
         setInfoMessage(`Đăng nhập thành công: ${email} / ${password}`);
         localStorage.setItem(
           "demo_last_login",
           JSON.stringify({ email, password })
         );
       } else {
-        setLoggedIn(false);
         alert("Email hoặc mật khẩu không đúng");
       }
     } catch {
