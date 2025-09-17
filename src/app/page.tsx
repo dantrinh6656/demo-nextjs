@@ -1,125 +1,124 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  // State cho login
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Đăng nhập với:\nEmail: ${email}\nPassword: ${password}`);
+  };
+
   return (
-    <div
-      className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 relative"
-      style={{
-        backgroundImage: "url('/wallpaper.png')",   // background logo
-        backgroundSize: "cover",               // fill toàn màn hình
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Logo góc trên trái */}
-      <div className="absolute top-4 left-4">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-gray-100">
+      {/* Background logo */}
+      <div className="absolute inset-0 -z-10 opacity-10">
         <Image
-          src="/corner.png"
-          alt="Corner Logo"
-          width={80}
-          height={80}
-          priority
+          src="/wallpaper.png" // đổi thành logo bạn muốn làm background
+          alt="Background Logo"
+          fill
+          className="object-contain object-center"
         />
       </div>
 
-      {/* ===== MAIN (code cũ gốc của bạn) ===== */}
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start text-white drop-shadow-lg">
+      {/* Logo góc trên */}
+      <div className="absolute top-4 left-4">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+          src="/corner.png" // logo nhỏ khác
+          alt="Corner Logo"
+          width={60}
+          height={60}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Nội dung chính */}
+      <h1 className="mb-6 text-3xl font-bold text-gray-800">
+        XMT Solutions
+      </h1>
+
+      {/* Cart mẫu */}
+      <div className="mb-10 rounded-xl border bg-white p-6 shadow-lg">
+        <h2 className="mb-4 text-xl font-semibold">Dân Trịnh :D</h2>
+        <ul className="space-y-2">
+          <li className="flex justify-between">
+            <span>DânTrịnh </span>
+            <span>100.000.000đ</span>
+          </li>
+          <li className="flex justify-between">
+            <span>DânTrịnh </span>
+            <span>200.000.000đ</span>
+          </li>
+        </ul>
+        <div className="mt-4 flex justify-between font-bold">
+          <span>Tổng</span>
+          <span>300.000.000đ</span>
         </div>
-      </main>
+      </div>
 
-      {/* ===== FOOTER (code cũ gốc của bạn) ===== */}
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center text-white drop-shadow-lg">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* Form Login */}
+      <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+          Đăng Nhập
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          {/* Email */}
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Nhập email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Mật khẩu
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Nhập mật khẩu..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              required
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 transition"
+          >
+            Đăng nhập
+          </button>
+        </form>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Chưa có tài khoản?{" "}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Đăng ký
+          </a>
+        </p>
+      </div>
+    </main>
   );
 }
