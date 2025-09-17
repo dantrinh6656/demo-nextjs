@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const router = useRouter();
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,13 +16,20 @@ export default function RegisterPage() {
       alert("Mật khẩu xác nhận không khớp");
       return;
     }
-    alert(`Đăng ký với:\nHọ tên: ${name}\nEmail: ${email}`);
+    // Lưu tài khoản vào localStorage (demo)
+    const newUser = { name, email, password };
+    try {
+      localStorage.setItem("demo_user", JSON.stringify(newUser));
+      alert("Đăng ký thành công! Hãy đăng nhập.");
+      router.push("/");
+    } catch (err) {
+      alert("Không thể lưu tài khoản trên trình duyệt.");
+    }
   };
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-4">
       <div className="overlay-dark" />
-
       <div className="z-10 mb-8 w-full max-w-2xl rounded-2xl p-6 panel">
         <h2 className="text-2xl font-bold neon-title text-center">Tham gia cộng đồng</h2>
         <p className="mt-2 text-sm text-white/80 text-center">Đăng ký tài khoản để nhận cập nhật mới nhất.</p>

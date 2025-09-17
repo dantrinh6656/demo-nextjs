@@ -1,17 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import RegisterPage from "./register/page";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   // State cho login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [infoMessage, setInfoMessage] = useState("TESTING...");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Nếu đã có thông tin đăng nhập lưu trước đó thì hiển thị luôn
+    try {
+      const last = localStorage.getItem("demo_last_login");
+      if (last) {
+        const obj = JSON.parse(last) as { email: string; password: string };
+        setInfoMessage(`Đã đăng nhập trước đó: ${obj.email} / ${obj.password}`);
+      }
+    } catch {}
+  }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Đăng nhập với:\nEmail: ${email}\nPassword: ${password}`);
+    // Lấy user đã đăng ký từ localStorage
+    try {
+      const raw = localStorage.getItem("demo_user");
+      if (!raw) {
+        alert("Chưa có tài khoản. Vui lòng đăng ký trước.");
+        return;
+      }
+      const user = JSON.parse(raw) as { email: string; password: string };
+      if (user.email === email && user.password === password) {
+        setLoggedIn(true);
+        setInfoMessage(`Đăng nhập thành công: ${email} / ${password}`);
+        localStorage.setItem(
+          "demo_last_login",
+          JSON.stringify({ email, password })
+        );
+      } else {
+        setLoggedIn(false);
+        alert("Email hoặc mật khẩu không đúng");
+      }
+    } catch {
+      alert("Không thể đọc dữ liệu trình duyệt");
+    }
   };
 
   return (
@@ -36,7 +69,7 @@ export default function Home() {
           <span className="text-sm text-white/70">demo</span>
         </div>
         <p className="text-sm text-white/80">
-          TESTING...
+          {infoMessage}
         </p>
       </div>
 
